@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Chat y Servidores</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sección de inicio de sesión y registro -->
+    <div class="auth-section">
+      <h2>Bienvenido</h2>
+      <form id="login-form" class="auth-form">
+        <input type="text" id="username" placeholder="Nombre de usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <p>¿No tienes cuenta? <span id="register-link">Regístrate aquí</span></p>
+    </div>
+
+    <!-- Sección principal (una vez logueado) -->
+    <div class="main-section" id="main-section" style="display: none;">
+      <div class="sidebar">
+        <h3>Servidores</h3>
+        <button id="create-server">Crear servidor</button>
+        <button id="join-server">Unirte a un servidor</button>
+        <h3>Amigos</h3>
+        <input type="text" id="friend-search" placeholder="Buscar amigo...">
+        <ul id="friend-list"></ul>
+      </div>
+
+      <div class="chat-section">
+        <div id="server-info">
+          <h3>Servidor: <span id="server-name">Nombre del servidor</span></h3>
+          <button id="server-settings">Configurar servidor</button>
+        </div>
+
+        <div id="voice-channel">
+          <button id="join-voice-channel">Unirse a llamada de voz</button>
+          <button id="share-screen">Compartir pantalla</button>
+          <button id="mute-microphone">Silenciar micrófono</button>
+          <button id="leave-call">Salir de llamada</button>
+        </div>
+
+        <div id="text-channel">
+          <textarea id="text-message" placeholder="Escribe un mensaje..."></textarea>
+          <button id="send-message">Enviar</button>
+          <button id="send-voice-message">Enviar mensaje de voz</button>
+          <button id="send-video">Enviar video</button>
+          <button id="send-image">Enviar imagen</button>
+        </div>
+
+        <div id="roles">
+          <button id="create-role">Crear rol</button>
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <h3>Mi perfil</h3>
+        <img id="profile-pic" src="default-avatar.png" alt="Foto de perfil" width="100">
+        <p id="username-display">Usuario: <span>Usuario</span></p>
+        <textarea id="user-description" placeholder="Descripción del usuario..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Chat y Servidores</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sección de inicio de sesión y registro -->
+    <div class="auth-section" id="auth-section">
+      <h2>Bienvenido</h2>
+      <form id="login-form" class="auth-form">
+        <input type="text" id="username" placeholder="Nombre de usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <p>¿No tienes cuenta? <span id="register-link">Regístrate aquí</span></p>
+    </div>
+
+    <!-- Sección principal (una vez logueado) -->
+    <div class="main-section" id="main-section" style="display: none;">
+      <div class="sidebar">
+        <h3>Servidores</h3>
+        <button id="create-server">Crear servidor</button>
+        <button id="join-server">Unirte a un servidor</button>
+        <h3>Amigos</h3>
+        <input type="text" id="friend-search" placeholder="Buscar amigo...">
+        <ul id="friend-list"></ul>
+      </div>
+
+      <div class="chat-section">
+        <div id="server-info">
+          <h3>Servidor: <span id="server-name">Nombre del servidor</span></h3>
+          <button id="server-settings">Configurar servidor</button>
+        </div>
+
+        <div id="voice-channel">
+          <button id="join-voice-channel">Unirse a llamada de voz</button>
+          <button id="share-screen">Compartir pantalla</button>
+          <button id="mute-microphone">Silenciar micrófono</button>
+          <button id="leave-call">Salir de llamada</button>
+        </div>
+
+        <div id="text-channel">
+          <textarea id="text-message" placeholder="Escribe un mensaje..."></textarea>
+          <button id="send-message">Enviar</button>
+          <button id="send-voice-message">Enviar mensaje de voz</button>
+          <button id="send-video">Enviar video</button>
+          <button id="send-image">Enviar imagen</button>
+        </div>
+
+        <div id="roles">
+          <button id="create-role">Crear rol</button>
+        </div>
+      </div>
+
+      <div class="user-profile">
+        <h3>Mi perfil</h3>
+        <img id="profile-pic" src="default-avatar.png" alt="Foto de perfil" width="100">
+        <p id="username-display">Usuario: <span>Usuario</span></p>
+        <textarea id="user-description" placeholder="Descripción del usuario..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+<div id="create-server-section">
+  <h3>Crear un nuevo servidor</h3>
+  <input type="text" id="server-name" placeholder="Nombre del servidor">
+  <button id="create-server-button">Crear servidor</button>
+</div>
+<div id="role-section">
+  <h3>Crear rol</h3>
+  <input type="text" id="role-name" placeholder="Nombre del rol">
+  <input type="text" id="permissions" placeholder="Permisos separados por coma">
+  <button id="create-role-button">Crear rol</button>
+</div>
+<div id="server-settings">
+  <h3>Configuración del Servidor</h3>
+  <input type="text" id="new-server-name" placeholder="Nuevo nombre del servidor">
+  <input type="file" id="new-server-image" accept="image/*">
+  <input type="file" id="new-server-banner" accept="image/*">
+  <button id="update-server-button">Actualizar Servidor</button>
+</div>
+<div id="text-channel">
+  <input type="text" id="message-input" placeholder="Escribe un mensaje">
+  <button id="send-message-button">Enviar</button>
+</div>
+<div id="messages-list">
+  <!-- Los mensajes se mostrarán aquí -->
+</div>
+<div id="profile-settings">
+  <h3>Actualizar Perfil</h3>
+  <input type="file" id="profile-pic" accept="image/*">
+  <textarea id="profile-description" placeholder="Agrega una descripción"></textarea>
+  <button id="update-profile-button">Actualizar Perfil</button>
+</div>
+<div id="bot-management">
+  <h3>Gestionar Bots</h3>
+  <input type="text" id="bot-name" placeholder="Nombre del Bot">
+  <textarea id="bot-description" placeholder="Descripción del Bot"></textarea>
+  <button id="create-bot-button">Crear Bot</button>
+</div>
+<div id="voice-channel">
+  <button id="join-call-button">Unirse a la llamada</button>
+  <button id="toggle-mute-button" disabled>Silenciar/Activar Micrófono</button>
+  <button id="share-screen-button" disabled>Compartir Pantalla</button>
+  <button id="leave-call-button" disabled>Salir de la llamada</button>
+</div>
+<div id="role-management">
+  <h3>Crear Rol</h3>
+  <input type="text" id="role-name" placeholder="Nombre del Rol">
+  <textarea id="role-permissions" placeholder="Permisos (separados por comas)"></textarea>
+  <button id="create-role-button">Crear Rol</button>
+</div>
+<div id="bot-creation">
+  <h3>Crear Bot</h3>
+  <input type="text" id="bot-name" placeholder="Nombre del Bot">
+  <textarea id="bot-description" placeholder="Descripción del Bot"></textarea>
+  <button id="create-bot-button">Crear Bot</button>
+</div>
+
+<div id="bot-management">
+  <h3>Gestión de Bots</h3>
+  <div id="bot-list"></div> <!-- Listado de bots creados -->
+</div>
+<div id="login-section" class="box">
+  <h2>Iniciar sesión</h2>
+  <input type="text" id="login-username" placeholder="Nombre de usuario" />
+  <input type="password" id="login-password" placeholder="Contraseña" />
+  <button id="login-button">Iniciar sesión</button>
+  <p>No tienes cuenta? <a href="#" id="go-to-register">Regístrate aquí</a></p>
+</div>
+<!-- Botón de cerrar sesión -->
+<button id="logout-button">Cerrar sesión</button>
+<div id="create-bot">
+  <h3>Crear Bot</h3>
+  <input type="text" id="bot-name" placeholder="Nombre del Bot" />
+  <textarea id="bot-description" placeholder="Descripción del Bot"></textarea>
+  <button id="create-bot-button">Crear Bot</button>
+</div>
+<button id="toggle-microphone">Silenciar micrófono</button>
+<button id="share-screen">Compartir pantalla</button>
+<div id="text-channel" class="box">
+  <h3>Canales de Texto</h3>
+  <div id="text-chat-area">
+    <!-- Los mensajes se mostrarán aquí -->
+  </div>
+  <textarea id="text-message" placeholder="Escribe un mensaje..."></textarea>
+  <button id="send-text-message">Enviar</button>
+</div>
+<button class="delete-message">Eliminar</button>
+<button class="emoji-react">👍</button>
+<div id="server-settings" class="box">
+  <h3>Configuración del Servidor</h3>
+  <input type="text" id="server-name" placeholder="Nuevo nombre del servidor" />
+  <input type="file" id="server-image" />
+  <input type="url" id="server-banner" placeholder="URL del banner (GIF)" />
+  <button id="update-server">Actualizar Servidor</button>
+</div>
+<div id="role-management" class="box">
+  <h3>Gestión de Roles</h3>
+  <input type="text" id="role-name" placeholder="Nombre del rol" />
+  <select id="role-permissions">
+    <option value="manage-channels">Gestionar Canales</option>
+    <option value="admin">Administrador</option>
+    <option value="moderator">Moderador</option>
+  </select>
+  <button id="create-role">Crear Rol</button>
+</div>
+<div id="stickers">
+  <img src="cute1.png" class="sticker" onclick="sendSticker('cute1.png')" />
+  <img src="cute2.png" class="sticker" onclick="sendSticker('cute2.png')" />
+  <img src="cute3.png" class="sticker" onclick="sendSticker('cute3.png')" />
+</div>
+<select id="theme-selector">
+  <option value="default">Tema Predeterminado</option>
+  <option value="cute-pink">Rosa Cute</option>
+  <option value="pastel-blue">Azul Pastel</option>
+  <option value="soft-purple">Púrpura Suave</option>
+</select>
+<audio id="message-sound" src="cute-pop.mp3"></audio>
+<audio id="click-sound" src="soft-click.mp3"></audio>
+<canvas id="particles"></canvas>
+<img id="cute-mascot" src="bunny.png" />
+<select id="avatar-selector">
+  <option value="avatar1.png">Osito</option>
+  <option value="avatar2.png">Conejito</option>
+  <option value="avatar3.png">Gatito</option>
+</select>
+<img id="user-avatar" src="avatar1.png" />
+<div id="dynamic-background"></div>
+<div id="notification-bubble">¡Nuevo mensaje! 📩</div>
+<button id="theme-toggle">🌙 Cambiar Tema</button>
+<button class="glow-button">¡Click Cute! ✨</button>
+<h2 class="glow-text">Bienvenido a tu Mundo Cute! ✨</h2>
+<button id="click-game">🐰 ¡Haz click en mí!</button>
+<p id="click-score">Puntos: 0</p>
+<audio id="click-sound" src="cute-click.mp3"></audio>
+<audio id="message-sound" src="cute-message.mp3"></audio>
+<div class="sticker-picker">
+  <img src="sticker1.png" class="sticker" />
+  <img src="sticker2.png" class="sticker" />
+  <img src="sticker3.png" class="sticker" />
+</div>
+<img id="user-avatar" src="happy.png" />
+<canvas id="confetti"></canvas>
+<div class="bubble-message">¡Hola! 💖</div>
+<div id="pet-container">
+  <img id="cute-pet" src="pet-happy.png" />
+</div>
+<button class="rainbow-button">🌈 ¡Modo Cute!</button>
+<div class="typing-indicator">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<select id="chat-background-selector">
+  <option value="pink-clouds.jpg">🌸 Nubes Rosas</option>
+  <option value="starry-night.jpg">🌟 Noche Estrellada</option>
+  <option value="pastel-gradient.jpg">🎨 Gradiente Pastel</option>
+</select>
+<div id="floating-chat">💌 ¡Tienes mensajes!</div>
+<div id="mention-alert">🥺 @Tú Fuiste Mencionado</div>
+<canvas id="particles"></canvas>
+<button class="glow-button">💖 ¡Brillo Mágico!</button>
+<audio id="click-sound" src="click.mp3"></audio>
+<audio id="message-sound" src="message.mp3"></audio>
+<div class="fade-in">🌸 ¡Bienvenido a tu espacio Cute!</div>
+<div id="welcome-popup" class="popup">
+  <div class="popup-content">
+    <h2>✨ ¡Bienvenido! ✨</h2>
+    <p>Nos alegra verte aquí. ¡Disfruta tu tiempo en la app! 💖</p>
+    <button id="close-popup">Cerrar</button>
+  </div>
+</div>
+<div id="background-container"></div>
+<canvas id="heart-particles"></canvas>
+<div id="sticker-gallery" class="hidden">
+  <img src="sticker1.gif" class="sticker" onclick="sendSticker('sticker1.gif')">
+  <img src="sticker2.gif" class="sticker" onclick="sendSticker('sticker2.gif')">
+  <img src="sticker3.gif" class="sticker" onclick="sendSticker('sticker3.gif')">
+</div>
+<button onclick="toggleStickerGallery()">💖 Stickers</button>
+<button id="kawaii-mode-toggle">🌸 Activar Modo Kawaii</button>
+<canvas id="star-canvas"></canvas>
+<div class="chat-bubble">Hola, ¿cómo estás? 💖</div>
+<button id="party-mode">🎊 ¡Modo Fiesta!</button>
+<audio id="party-music" src="party-music.mp3" loop></audio>
+<div id="nitro-cute-section">
+  <h2>🌟 ¡Consigue Nitro Cute! 🌟</h2>
+  <p>Desbloquea funciones premium como GIFs en el perfil, emojis exclusivos y más.</p>
+  <button onclick="subscribeNitro()">💖 Suscribirse</button>
+</div>
+<div id="nitro-sticker-gallery" class="hidden">
+  <img src="nitro-sticker1.gif" class="sticker">
+  <img src="nitro-sticker2.gif" class="sticker">
+</div>
+<li class="friend nitro-friend">🌟 Alice</li>
+<li class="friend">Bob</li>
+<li class="server nitro-server">🌸 CuteServer</li>
+<div id="bot-section">
+  <h2>🤖 KawaiiBot - ¡Tu compañero premium! 🎀</h2>
+  <button onclick="inviteKawaiiBot()">✨ Invitar a mi servidor</button>
+  <p id="bot-status">Estado: No añadido ❌</p>
+</div>
